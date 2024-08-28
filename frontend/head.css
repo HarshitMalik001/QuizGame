@@ -27,10 +27,8 @@ body{
     align-items: center;
 }
 
-.head-back{
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
+.logo{
+    padding: 10px;
 }
 
 .button{
@@ -41,6 +39,12 @@ body{
     outline: none;
 }
 
+
+.head-back{
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
 
 .search{
     border: none;
@@ -68,6 +72,80 @@ body{
     font-size: large;
 }
 
+
+/* Sidebar */
+
 .check1{
     display: none;
+}
+
+.sidebar{
+    position: fixed;
+    height: 100vh;
+    background-color: rgb(255, 255, 255,0.95);
+    width: 200px;
+    left:-200px;
+    transition: all 0.3s linear;
+    z-index: 2;
+    box-shadow: 0px 0px 2px grey;
+
+}
+
+
+.side-head{
+    border-bottom: grey 0.5px solid;
+    background-color: black;
+    color: white;
+}
+
+.cross{
+    position: absolute;
+    left: 180px;
+}
+
+.sign-up{
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 7px;
+    font-size: large;
+}
+
+.sign-up:hover{
+    text-decoration: none;
+    color: cornsilk;
+}
+
+.side-button{
+    font-size:medium;
+    padding: 7px;
+    color: black;
+    display: block;
+}
+
+.side-h2{
+    padding: 8px;
+}
+
+.check1:checked ~ .sidebar{
+    left: 0px;
+}
+
+
+@media screen and (max-width: 550px) {
+    .button{
+        font-size: small;
+    }
+    .search-box{
+        width: 120px;
+    }
+    .search{
+        width: 80px;
+    }
+}
+
+@media screen and (max-width: 427px) {
+    .button{
+        display: none;
+    }
 }
