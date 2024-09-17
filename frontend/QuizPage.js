@@ -1,4 +1,18 @@
+let timer;
+let timeLeft = 300; // Time in seconds (5 minutes)
 
+function updateTimer() {
+    const timerElement = document.getElementById("timer");
+    if (timeLeft <= 0) {
+        clearInterval(timer);
+        // Handle time out scenario
+        return;
+    }
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    timeLeft--;
+}
 
 
 function myFunctionnext(a)
@@ -22,10 +36,18 @@ function displayTheQuiz() {
 
     if (profileItems == undefined) {
         console.error('No quiz questions found or invalid format.');
+        var ParentBox = document.getElementById("Parent-Box");
+        ParentBox.innerHTML = `
+        SOMETHING WENT WRONG PLEASE TRY AGAIN
+        `
         return;
     }
 
     var ParentBox = document.getElementById("Parent-Box");
+
+    ParentBox.innerHTML += `
+    <div class="timer" id="timer">5:00</div>
+    `;
 
     profileItems.forEach((cur, ind) => {
         var quizBox = document.createElement("div");
@@ -69,7 +91,9 @@ function displayTheQuiz() {
       ${next}
         `
         ParentBox.appendChild(quizBox);
-    })
+    });
+
+    timer = setInterval(updateTimer, 1000); 
 
 }
 
