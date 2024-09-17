@@ -1,11 +1,11 @@
 
-
 body {
     font-family: Arial, sans-serif;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
   }
   
@@ -14,9 +14,10 @@ body {
     padding: 20px 40px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80vw;
   }
   
-  #quiz-header {
+  .quiz-header {
     margin-bottom: 20px;
   }
   
@@ -42,7 +43,21 @@ body {
     border-radius: 5px;
     cursor: pointer;
   }
+
+  #submit{
+    background-color: #028d19;
+  }
   
+  .quiz-container
+  {
+    display: none;
+  }
+
+  #quiz1{
+    display: block;
+  }
+
+
   button:hover {
     background-color: #2980b9;
   }
