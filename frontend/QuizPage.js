@@ -4,7 +4,7 @@ let currentIndex = 1;
 
 function submitHandlerManualy()
 {
-  
+  document.getElementById("Submit-Confirm").style.display = "block";
 }
 
 function submitHandler()
