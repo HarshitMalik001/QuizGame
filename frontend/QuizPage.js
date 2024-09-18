@@ -1,6 +1,18 @@
 let timer;
 let currentIndex = 1;
 
+
+function submitHandlerManualy()
+{
+  
+}
+
+function submitHandler()
+{
+  window.location.href = 'index.html';
+}
+
+
 function updateTimer() {
   const timerElement = document.getElementById("timer");
   var profileItems = JSON.parse(sessionStorage.getItem('MyQuestions'));
@@ -9,6 +21,7 @@ function updateTimer() {
   if (timeLeft <= 0) {
     clearInterval(timer);
     // Handle time out scenario
+    submitHandler();
     return;
   }
   const minutes = Math.floor(timeLeft / 60);
