@@ -10,6 +10,8 @@ const myData = [
 
 function myFuction(a)
 {
+    // console.log(a);
+    // return;
     fetch(`https://opentdb.com/api.php?amount=${a.NoOfQuestions}&category=${a.category}&difficulty=easy&type=multiple`)
     .then(response => {
         if (!response.ok) {
@@ -31,6 +33,7 @@ function myFuction(a)
             })
         });
         sessionStorage.setItem('MyQuestions', JSON.stringify(arrOfQuestions));
+        sessionStorage.setItem('CurRemainTime', a.time);
         window.location.href = 'QuizPage.html';
     })
     .catch(error => {

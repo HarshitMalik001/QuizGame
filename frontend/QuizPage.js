@@ -1,71 +1,89 @@
 let timer;
-let timeLeft = 300; // Time in seconds (5 minutes)
+let currentIndex = 1;
 
 function updateTimer() {
-    const timerElement = document.getElementById("timer");
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        // Handle time out scenario
-        return;
-    }
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    timeLeft--;
+  const timerElement = document.getElementById("timer");
+  var profileItems = JSON.parse(sessionStorage.getItem('MyQuestions'));
+
+  let timeLeft = parseInt(sessionStorage.getItem('CurRemainTime'));
+  if (timeLeft <= 0) {
+    clearInterval(timer);
+    // Handle time out scenario
+    return;
+  }
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  timeLeft--;
+  sessionStorage.setItem('CurRemainTime', timeLeft);
 }
 
 
-function myFunctionnext(a)
-{
-    document.getElementById(`quiz${a}`).style.display = "none";
-    // console.log();
-    document.getElementById(`quiz${parseInt(a) +1 }`).style.display = "block";
+function myFunctionnext(a) {
+  document.getElementById(`quiz${a}`).style.display = "none";
+  document.getElementById(`quiz${parseInt(a) + 1}`).style.display = "block";
+  currentIndex++;
 }
 
-function myFunctionprev(a)
-{
-    // console.log(a);
-    document.getElementById(`quiz${a}`).style.display = "none";
-    // console.log(`quiz${a - 1}`);
-    document.getElementById(`quiz${parseInt(a) - 1}`).style.display = "block";
+function myFunctionprev(a) {
+  document.getElementById(`quiz${a}`).style.display = "none";
+  document.getElementById(`quiz${parseInt(a) - 1}`).style.display = "block";
+  currentIndex--;
 }
 
+function myFunction(a) {
+  document.getElementById(`quiz${currentIndex}`).style.display = "none";
+  document.getElementById(`quiz${a}`).style.display = "block";
+  currentIndex = a;
+}
 
 function displayTheQuiz() {
-    var profileItems = JSON.parse(sessionStorage.getItem('MyQuestions'));
+  var profileItems = JSON.parse(sessionStorage.getItem('MyQuestions'));
 
-    if (profileItems == undefined) {
-        console.error('No quiz questions found or invalid format.');
-        var ParentBox = document.getElementById("Parent-Box");
-        ParentBox.innerHTML = `
+  if (profileItems == undefined) {
+    console.error('No quiz questions found or invalid format.');
+    var ParentBox = document.getElementById("Parent-Box");
+    ParentBox.innerHTML = `
         SOMETHING WENT WRONG PLEASE TRY AGAIN
         `
-        return;
-    }
+    return;
+  }
 
-    var ParentBox = document.getElementById("Parent-Box");
+  var ParentBox = document.getElementById("Parent-Box");
+  var indexnumbers = document.getElementById("index-numbers");
 
-    ParentBox.innerHTML += `
-    <div class="timer" id="timer">5:00</div>
+  ParentBox.innerHTML += `
+    <div class = "TimeBox">
+      <div>Remaining Time : </div>
+      <div class="timer" id="timer">Loading...</div>
+    </div>
     `;
 
-    profileItems.forEach((cur, ind) => {
-        var quizBox = document.createElement("div");
-        quizBox.className = "quiz-container";
-        quizBox.id = `quiz${ind + 1}`;
+  profileItems.forEach((cur, ind) => {
+    var indexButton = document.createElement("button");
+    indexButton.className = "index-button";
+    indexButton.value = `${ind + 1}`;
+    indexButton.innerHTML = `${ind + 1}`;
+    indexButton.addEventListener("click", function() {
+      myFunction(this.value);
+    });
 
-        var next = ``;
-        var prev = ``;
+    indexnumbers.appendChild(indexButton);
 
-        if(ind != 0)
-        {
-            prev = `<button id="prev${ind + 1}" value="${ind + 1}" onclick="myFunctionprev(this.value)" >Prev</button>`
-        }
-        if(ind != profileItems.length - 1)
-        {
-            next = `<button id="Next${ind + 1}" value="${ind + 1}" onclick="myFunctionnext(this.value)" >Next</button>`
-        }
-        quizBox.innerHTML = `
+    var quizBox = document.createElement("div");
+    quizBox.className = "quiz-container";
+    quizBox.id = `quiz${ind + 1}`;
+
+    var next = ``;
+    var prev = ``;
+
+    if (ind != 0) {
+      prev = `<button id="prev${ind + 1}" value="${ind + 1}" onclick="myFunctionprev(this.value)" >Prev</button>`
+    }
+    if (ind != profileItems.length - 1) {
+      next = `<button id="Next${ind + 1}" value="${ind + 1}" onclick="myFunctionnext(this.value)" >Next</button>`
+    }
+    quizBox.innerHTML = `
         <div class="quiz-header">
         <h2 id="question${ind + 1}">Q${ind + 1}. ${cur.Question}</h2>
       </div>
@@ -90,10 +108,10 @@ function displayTheQuiz() {
       ${prev}
       ${next}
         `
-        ParentBox.appendChild(quizBox);
-    });
+    ParentBox.appendChild(quizBox);
+  });
 
-    timer = setInterval(updateTimer, 1000); 
+  timer = setInterval(updateTimer, 1000);
 
 }
 

@@ -1,75 +1,109 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
-  }
-  
-  .quiz-container {
-    background-color: #fff;
-    padding: 20px 40px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80vw;
-  }
-  
-  .quiz-header {
-    margin-bottom: 20px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    margin-left: 8px;
-  }
-  
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+body{
+  font-family: Arial, sans-serif;
+  width: 100vw;
+}
 
-  #submit{
-    background-color: #028d19;
-  }
-  
-  .quiz-container
-  {
-    display: none;
-  }
+.heading
+{
+  margin: 5px;
+}
 
-  #quiz1{
-    display: block;
-  }
+.top{
+  display: flex;
+  height: 70vh;
+  width: 100vw;
+}
+.main{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
+  padding: 10px;
+  /* width: 100vw; */
+}
+  
+.quiz-container {
+  background-color: #fff;
+  padding: 20px 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80vw;
+}
+  
+.quiz-header {
+  margin-bottom: 20px;
+}
+  
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-left: 8px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#submit{
+  background-color: #028d19;
+}
+
+.quiz-container
+{
+  display: none;
+}
+
+#quiz1{
+  display: block;
+}
 
 
-  button:hover {
-    background-color: #2980b9;
-  }
-  
+button:hover {
+  background-color: #2980b9;
+}
 
-  .timer {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .timer {
-    color: #e74c3c; /* Red for timer */
-  }
-  
- 
+
+.timer {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.timer {
+  color: #e74c3c; /* Red for timer */
+}
+
+
+.TimeBox
+{
+  display: flex;
+  gap: 5px;
+}
+
+
+.index-numbers {
+  display: flex;
+  /* gap: 10px; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 50px;
+  overflow-x: hidden;
+  overflow-x: scroll;
+}
