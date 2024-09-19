@@ -40,6 +40,8 @@ function submitHandler() {
       })
       i.score.push([correct, total]);
       localStorage.setItem('resulttofind', i.size);
+      i.TypeId.push(`${sessionStorage.getItem('TypeOfThisQuiz')}`);
+      i.time.push(`${sessionStorage.getItem('TimeOfThisQuiz')}`);
     }
   }
 

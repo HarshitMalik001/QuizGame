@@ -8,9 +8,14 @@ function fun1(){
     let info_result ={
         name: document.getElementById("name").value,
         pass : document.getElementById("password").value,
+        
         resul : [],
         size : 0,
-        score : []
+        score : [],
+
+        // new
+        TypeId : [],
+        time : []
     }
 
     var profileItems = JSON.parse(localStorage.getItem('profile')) || [];

@@ -3,14 +3,13 @@ body {
     background-color: rgb(233, 236, 239);
     color: rgb(52, 58, 64);
     margin: 0;
-    padding: 20px;
 }
 
 .container {
     max-width: 700px;
     margin: auto;
     background: rgb(255, 255, 255);
-    padding: 30px;
+    padding: 70px 30px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }

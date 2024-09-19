@@ -2,7 +2,8 @@
 body{
   font-family: Arial, sans-serif;
   width: 100vw;
-  margin: 2px;
+  /* margin: 2px; */
+  padding: 0;
 }
 
 .heading

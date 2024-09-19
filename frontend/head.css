@@ -149,3 +149,9 @@ body{
         display: none;
     }
 }
+
+
+.profile
+{
+    cursor: pointer;
+}

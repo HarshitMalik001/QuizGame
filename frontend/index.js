@@ -37,12 +37,18 @@ function checkLogged()
     if(isLogged)
     {
         document.getElementById("UserName").innerHTML = `${localStorage.getItem('current_user')}`
+        document.getElementById("sign-up").style.display = "none";
+        document.getElementById("login").style.display = "none";
     }
+    // else
+    // {
+    //     document.getElementById("sign-up").style.display = "block";
+    //     document.getElementById("login").style.display = "block";
+    // }
 }
 
 function CheckLogIn()
 {
-    console.log("I am clard");
     if(isLogged)
     {
         window.location.href = "AllResult.html";
@@ -56,10 +62,25 @@ function CheckLogIn()
 checkLogged();
 
 
+function decodeHtml(html) {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+
+
+
+
 function myFuction(a)
 {
     // console.log(a);
     // return;
+    if(!isLogged)
+    {
+        alert("You Need to Log in First");
+        return;
+    }
+
     fetch(`https://opentdb.com/api.php?amount=${a.NoOfQuestions}&category=${a.category}&difficulty=easy&type=multiple`)
     .then(response => {
         if (!response.ok) {
@@ -73,15 +94,17 @@ function myFuction(a)
 
         questions.forEach(question => {
             arrOfQuestions.push({
-                Question: question.question,
-                Correct_Answer: question.correct_answer,
+                Question: decodeHtml(question.question),
+                Correct_Answer: decodeHtml(question.correct_answer),
                 Incorrect_Answers: question.incorrect_answers
             })
         });
         sessionStorage.setItem('MyQuestions', JSON.stringify(arrOfQuestions));
         sessionStorage.removeItem('CurRemainTime');
         sessionStorage.setItem('CurRemainTime', a.time);
-        
+        sessionStorage.setItem('TimeOfThisQuiz', a.time);
+        sessionStorage.setItem('TypeOfThisQuiz', a.title);
+
         // alert(a.time);
         // alert(sessionStorage.getItem('CurRemainTime'));
         window.location.href = 'QuizPage.html';
@@ -101,7 +124,8 @@ function fillQuizMain()
         var stringContent = JSON.stringify({
             time : data.time,
             NoOfQuestions : data.NoOfQuestions,
-            category : data.category
+            category : data.category,
+            title : data.title
         });
 
         var quizBox = document.createElement("div");
