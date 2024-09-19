@@ -9,6 +9,7 @@ document.getElementById('loginform').addEventListener('submit', function(event) 
         if(usernam==i.name&&passw==i.pass){
             window.localStorage.setItem("current_user",usernam);
             window.localStorage.setItem("current_pass",passw);
+            window.localStorage.setItem("isLogged",1);
             window.location.href = 'index.html';
         }
     }

@@ -2,6 +2,7 @@
 body{
   font-family: Arial, sans-serif;
   width: 100vw;
+  margin: 2px;
 }
 
 .heading
@@ -11,7 +12,6 @@ body{
 
 .top{
   display: flex;
-  height: 70vh;
   width: 100vw;
 }
 .main{
@@ -20,9 +20,8 @@ body{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 80vh;
   padding: 10px;
-  /* width: 100vw; */
+  top: 10px;
 }
   
 .quiz-container {
@@ -108,14 +107,9 @@ button:hover {
   overflow-x: scroll;
 }
 
-/* 
-.Submit-Confirm
-{
-  display: none;
-} */
 
 .Submit-Confirm {
-  /* display: none; Hidden by default */
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
