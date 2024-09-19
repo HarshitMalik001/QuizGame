@@ -20,7 +20,7 @@ function submitHandler() {
     }
     return a;
   });
-  console.log(profileItems);
+
   var result = JSON.parse(localStorage.getItem('result')) || [];
 
   var usernam = localStorage.getItem('current_user');
@@ -38,8 +38,8 @@ function submitHandler() {
         }
         total++;
       })
-
       i.score.push([correct, total]);
+      localStorage.setItem('resulttofind', i.size);
     }
   }
 
