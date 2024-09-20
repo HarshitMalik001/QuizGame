@@ -1,6 +1,5 @@
 
-function getCurrentUsersResult()
-{
+function getCurrentUsersResult() {
     var result = JSON.parse(localStorage.getItem('result')) || [];
 
     var usernam = localStorage.getItem('current_user');
@@ -21,13 +20,38 @@ function getCurrentUsersResult()
         }
     }
 
-    console.log("Current User", usernam);
-    console.log("Total Test Attempted: ", myresult.length);
-    console.log(myresult);
-    console.log(myscore);
-    console.log(time);
-    console.log(TypeId);
+  
+
+    document.getElementById("user-info").innerHTML = `
+    <div class="summary-item"><strong>Current User:</strong> ${usernam}</div>
+    <div class="summary-item"><strong>Total Tests Attempted:</strong> ${myresult.length}</div>
+`;
+
+    myresult.forEach((result, index) => {
+        const summaryDiv = document.createElement('div');
+        summaryDiv.classList.add('summary-item');
+        summaryDiv.innerHTML = `
+        <strong>Test Type:</strong> ${TypeId[index]} <br>
+        <strong>Score:</strong> ${myscore[index][0]}/${myscore[index][1]} <br>
+        <strong>Total Time:</strong> ${time[index]} sec <br>
+        <button value = ${index + 1} class="buttonAllresult" onclick = "LoadDetailResult(this.value)"> View Detailed Results</button>
+    `;
+        document.getElementById("test-summary").appendChild(summaryDiv);
+    });
 
 }
 
+function LoadDetailResult(a)
+{
+    localStorage.setItem('resulttofind', parseInt(a));
+    window.location.href = "resultpage.html";
+}
+
 getCurrentUsersResult();
+
+
+function logout()
+{
+    localStorage.setItem('isLogged', 0);
+    window.location.href = "login.html"
+}

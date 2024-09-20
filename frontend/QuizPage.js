@@ -13,10 +13,14 @@ function submitHandlerManualyNo() {
 
 function submitHandler() {
   var profileItems = JSON.parse(sessionStorage.getItem('MyQuestions'));
+
   var profileItems = profileItems.map((a, ind) => {
     let currentAnswer = document.querySelector(`input[name="answer${ind + 1}"]:checked`);
     if (currentAnswer) {
       a.selectedAnswer = (currentAnswer.value);
+    }
+    else{
+      a.selectedAnswer = "Nothing Selected";
     }
     return a;
   });
@@ -142,8 +146,8 @@ function displayTheQuiz() {
       </div>
       <ul>
         <li>
-          <input type="radio" name="answer${ind + 1}" id="a${ind + 1}" value="${cur.Correct_Answer}" class="answer">
-          <label for="a${ind + 1}" id="a_text${ind + 1}">${cur.Correct_Answer}</label>
+          <input type="radio" name="answer${ind + 1}" id="a${ind + 1}" value="${cur.Incorrect_Answers[3]}" class="answer">
+          <label for="a${ind + 1}" id="a_text${ind + 1}">${cur.Incorrect_Answers[3]}</label>
         </li>
         <li>
           <input type="radio" name="answer${ind + 1}" id="b${ind + 1}" value="${cur.Incorrect_Answers[0]}" class="answer">

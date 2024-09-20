@@ -1,21 +1,21 @@
-function fun1(){
-    let info ={
-        name:document.getElementById("name").value,
-        mail : document.getElementById("mail").value,
-        pass : document.getElementById("password").value
+function fun1() {
+    let info = {
+        name: document.getElementById("name").value,
+        mail: document.getElementById("mail").value,
+        pass: document.getElementById("password").value
     }
 
-    let info_result ={
+    let info_result = {
         name: document.getElementById("name").value,
-        pass : document.getElementById("password").value,
-        
-        resul : [],
-        size : 0,
-        score : [],
+        pass: document.getElementById("password").value,
+
+        resul: [],
+        size: 0,
+        score: [],
 
         // new
-        TypeId : [],
-        time : []
+        TypeId: [],
+        time: []
     }
 
     var profileItems = JSON.parse(localStorage.getItem('profile')) || [];
@@ -32,17 +32,17 @@ function fun1(){
 }
 
 
-document.getElementById('signupform').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+document.getElementById('signupform').addEventListener('submit', function (event) {
+    event.preventDefault();
 
     var passw = document.getElementById("password").value;
     var cpassw = document.getElementById("cpassword").value;
-    
-    if(passw==cpassw){
+
+    if (passw == cpassw) {
         fun1();
         window.location.href = 'login.html';
     }
-    else{
+    else {
         alert("Password Does'nt match");
     }
 }

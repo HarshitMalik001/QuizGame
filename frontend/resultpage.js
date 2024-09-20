@@ -1,3 +1,4 @@
+
 function CalledFromQuiz() {
     var result = JSON.parse(localStorage.getItem('result')) || [];
 
@@ -8,6 +9,8 @@ function CalledFromQuiz() {
 
     var myresult;
     var myscore;
+    console.log(resulttofind);
+
     for (i of result) {
         if (usernam == i.name && passw == i.pass) {
             myresult = i.resul[resulttofind - 1];
@@ -46,33 +49,3 @@ function CalledFromQuiz() {
 CalledFromQuiz();
 
 
-var isLogged = localStorage.getItem('isLogged');
-
-function checkLogged()
-{
-    if(isLogged)
-    {
-        document.getElementById("UserName").innerHTML = `${localStorage.getItem('current_user')}`
-        document.getElementById("sign-up").style.display = "none";
-        document.getElementById("login").style.display = "none";
-    }
-    // else
-    // {
-    //     document.getElementById("sign-up").style.display = "block";
-    //     document.getElementById("login").style.display = "block";
-    // }
-}
-
-function CheckLogIn()
-{
-    if(isLogged)
-    {
-        window.location.href = "AllResult.html";
-    }
-    else
-    {
-        window.location.href = "login.html";
-    }
-}
-
-checkLogged();

@@ -28,7 +28,13 @@ body{
 }
 
 .logo{
-    padding: 10px;
+    padding: 4px;
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    background-color: rgb(229, 229, 229);
+    margin: 5px;
+    border-radius: 5px;
 }
 
 .button{
@@ -155,3 +161,20 @@ body{
 {
     cursor: pointer;
 }
+
+
+.Create-button {
+    padding: 5px 15px;
+    background-color: rgb(0, 123, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.Create-button:hover {
+    background-color: rgb(0, 105, 217);
+}
+
