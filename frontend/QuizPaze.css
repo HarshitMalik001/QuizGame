@@ -12,7 +12,8 @@ body{
 }
 
 .top{
-  display: flex;
+  display: grid;
+  grid-template-columns: 80px auto;
   width: 100vw;
 }
 .main{
@@ -30,7 +31,7 @@ body{
   padding: 20px 40px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 80vw;
+  /* width: 80vw; */
 }
   
 .quiz-header {
