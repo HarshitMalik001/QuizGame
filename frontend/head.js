@@ -37,6 +37,28 @@ function TakeMeToCreatePage(){
     {
         sessionStorage.removeItem('CalledFromUpdate');
         sessionStorage.setItem('CalledFromUpdate', 0);
-        window.location.href = "create.html"
+        window.location.href = "Create.html"
     }
 }
+
+
+
+
+function myFunction1(x) {
+    console.log(x);
+    if (x.matches) { 
+        document.getElementById("sign-up").style.display = "none";
+        document.getElementById("login").style.display = "none"; 
+    } else {
+        document.getElementById("sign-up").style.display = "inline";
+        document.getElementById("login").style.display = "inline";
+    }
+  }
+  
+
+  var x = window.matchMedia("(max-width: 700px)")
+  
+
+  x.addEventListener("change", function() {
+    myFunction1(x);
+  }); 

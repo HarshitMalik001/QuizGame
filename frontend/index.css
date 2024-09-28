@@ -140,3 +140,11 @@
 {
     padding: 5px;
 }
+
+
+@media screen and (max-width: 500px) {
+    .quizmain
+    {
+      padding: 30px;
+    }
+  }

@@ -137,10 +137,26 @@ body{
     left: 0px;
 }
 
+@media screen and (max-width: 700px) {
+    
+    #sign-up{
+        display: none;
+    }
+    #login{
+        display: none;
+    }
+    .logo{
+        display: none;
+    }
+}
 
 @media screen and (max-width: 550px) {
     .button{
         font-size: small;
+        display: none;
+    }
+    body{
+        background-color: aqua;
     }
     .search-box{
         width: 120px;
@@ -157,6 +173,11 @@ body{
     .logo{
         display: none;
     }
+    .search-box{
+        width: 120px;
+        display: none;
+    }
+
 }
 
 
