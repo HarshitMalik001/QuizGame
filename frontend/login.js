@@ -12,8 +12,11 @@ document.getElementById('loginform').addEventListener('submit', function(event) 
             window.localStorage.setItem("isLogged",1);
             window.location.href = 'index.html';
         }
+        else{
+            alert('Invalid username or password. Please try again.');
+        }
     }
-    alert('Invalid username or password. Please try again.');
+    
     
 });
 
