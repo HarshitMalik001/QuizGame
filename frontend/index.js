@@ -1,6 +1,7 @@
 // import { myData } from "./data/data";
 
 
+
 var myData = [
     { createdby: "Host", title: "General Knowledge Quiz", from: "9:00 AM", to: "9:00 PM", NoOfQuestions: 10, time: 300, imgLink: "https://www.themanthanschool.co.in/blog/wp-content/uploads/2019/12/general-knowledge.jpg", category: 9 },
 
@@ -26,12 +27,12 @@ var myData = [
 
     { createdby: "Host", title: "Sports ", from: "9:00 AM", to: "9:00 PM", NoOfQuestions: 15, time: 400, imgLink: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJhg2mLFAqpgulGhfvnLSmBg2fRFkB3tGEZQ&s", category: 21 },
     
-    { createdby: "Host", title: "Actors ", from: "9:00 AM", to: "9:00 PM", NoOfQuestions: 20, time: 450, imgLink: "https://cdn.images.express.co.uk/img/dynamic/79/750x445/1279824.jpg", category: 26 },
+    { createdby: "Host", title: "Sports ", from: "9:00 AM", to: "9:00 PM", NoOfQuestions: 25, time: 450, imgLink: "https://cdn.images.express.co.uk/img/dynamic/79/750x445/1279824.jpg", category: 21 },
 ]
 
 
 var MyQuestions = JSON.parse(localStorage.getItem('MyQustions')) || [];
-myData = myData.concat(MyQuestions);
+// myData = myData.concat(MyQuestions);
 
 
 
@@ -39,6 +40,12 @@ function decodeHtml(html) {
     const txt = document.createElement("textarea");
     txt.innerHTML = html;
     return txt.value;
+}
+
+function refreshThings()
+{
+    fillQuizMain();
+    fillQuizMainForCustom();
 }
 
 
@@ -98,7 +105,7 @@ function myFuction(a) {
 
 function fillQuizMain() {
     var myMainBox = document.getElementById("quizmain");
-
+    myMainBox.innerHTML = '';
     myData.forEach((data) => {
         var stringContent = JSON.stringify({
             time: data.time,
@@ -132,8 +139,93 @@ function fillQuizMain() {
         myMainBox.appendChild(quizBox);
     })
 }
+// createdby:"harsh"
 
-fillQuizMain();
+function deleteThisQuiz(ind)
+{
+    if(localStorage.getItem('current_user') != MyQuestions[ind].createdby)
+    {
+        alert("Can Only be deleted by the Owner or the Host");
+        return;
+    }
+    
+    MyQuestions.splice(ind, 1);
+    localStorage.setItem('MyQustions', JSON.stringify(MyQuestions));
+    // window.location.href = "index.html";
+    refreshThings();
+}
+
+
+function updateThisQuiz(ind){
+    if(localStorage.getItem('current_user') != MyQuestions[ind].createdby)
+    {
+        alert("Can Only be deleted by the Owner or the Host");
+        return;
+    }
+
+    
+
+    let TobeUpdatedList = MyQuestions[ind];
+    sessionStorage.setItem('TobeUpdatedList' ,JSON.stringify(TobeUpdatedList));
+    MyQuestions.splice(ind, 1);
+    localStorage.setItem('MyQustions', JSON.stringify(MyQuestions));
+
+    sessionStorage.removeItem('CalledFromUpdate');
+    sessionStorage.setItem('CalledFromUpdate', 1);
+
+    window.location.href = "Create.html";
+
+}
+
+
+
+function fillQuizMainForCustom() {
+    var myMainBox = document.getElementById("quizmain");
+
+    MyQuestions.forEach((data, ind) => {
+        var stringContent = JSON.stringify({
+            time: data.time,
+            NoOfQuestions: data.NoOfQuestions,
+            category: data.category,
+            title: data.title
+        });
+
+        var quizBox = document.createElement("div");
+        quizBox.className = "quizBox";
+        quizBox.innerHTML = `<div class="quizImage">
+          <img src="${data.imgLink}" alt="${data.title} Image">
+      </div>
+      <div class="quizContent">
+          <h3 class="quizTitle">${data.title}</h3>
+          <div class = "Hostname"> Created By <strong>${data.createdby}</strong> </div>
+          <div class="quizTime">
+              <div>From :<span class="quizStartTime">${data.from}</span></div>
+              <div>to <span class="quizEndTime">${data.to}</span></div>
+          </div>
+          <div class="quizDetails">
+              <div class="quizInfo">
+                  <div class="quizQuestions">${data.NoOfQuestions} Questions</div>
+                  <div class="quizDuration">${data.time} sec Duration</div>
+              </div>
+              <div class="quizPlayButton">
+                  <button class="deleteButton" onclick='deleteThisQuiz(${ind})' > 
+                    <img class="deleteimage" src="https://cdn-icons-png.flaticon.com/512/6861/6861362.png" alt="">
+                  </button>
+                  <button class="updateButton" onclick='updateThisQuiz(${ind})' > 
+                    <img class="updateimage" src="https://cdn-icons-png.flaticon.com/512/5278/5278646.png" alt="">
+                  </button>
+                  <button class="playButton" onclick='myFuction(${stringContent})' >Play</button>
+              </div>
+          </div>
+      </div>`
+        myMainBox.appendChild(quizBox);
+    })
+}
+
+
+
+refreshThings();
+
 
 
 

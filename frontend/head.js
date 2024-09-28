@@ -35,6 +35,8 @@ function TakeMeToCreatePage(){
     }
     else
     {
+        sessionStorage.removeItem('CalledFromUpdate');
+        sessionStorage.setItem('CalledFromUpdate', 0);
         window.location.href = "create.html"
     }
 }

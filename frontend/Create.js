@@ -8,6 +8,23 @@ function convertTo12HourFormat(timeString) {
     return formattedTime;
 }
 
+function convertTo24hr(timeStr) {
+    const [time, period] = timeStr.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+
+    if (period === "AM") {
+        if (hours === 12) {
+            hours = 0; 
+        }
+    } else {
+        if (hours !== 12) {
+            hours += 12; 
+        }
+    }
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
 
 document.getElementById("Create-own-Quest").addEventListener('submit', (event)=>{
     event.preventDefault();
@@ -15,7 +32,7 @@ document.getElementById("Create-own-Quest").addEventListener('submit', (event)=>
     var info = {
         title : document.getElementById('Title').value,
         from : convertTo12HourFormat(document.getElementById('From').value),
-        to : convertTo12HourFormat(document.getElementById('From').value),
+        to : convertTo12HourFormat(document.getElementById('To').value),
         NoOfQuestions : parseInt(document.getElementById('NoOfQuestions').value),
         time : parseInt(document.getElementById('Time').value),
         imgLink : document.getElementById('ImgLink').value,
@@ -38,3 +55,28 @@ document.getElementById("Create-own-Quest").addEventListener('submit', (event)=>
     window.location.href = "index.html";
 
 })
+
+
+function checkIfCalledFromUpdate(){
+    let flag = sessionStorage.getItem('CalledFromUpdate');
+    console.log(flag);
+
+    if(flag != 1){
+        console.log("called From create");
+        return;
+    }
+
+    let prevInfo = JSON.parse(sessionStorage.getItem('TobeUpdatedList'));
+
+    console.log(prevInfo);
+
+    document.getElementById('Title').value = prevInfo.title;
+    document.getElementById('From').value = convertTo24hr(prevInfo.from);
+    document.getElementById('To').value = convertTo24hr(prevInfo.to);
+    document.getElementById('NoOfQuestions').value = prevInfo.NoOfQuestions;
+    document.getElementById('Time').value = prevInfo.time;
+    document.getElementById('ImgLink').value = prevInfo.imgLink;
+}
+
+
+checkIfCalledFromUpdate();
